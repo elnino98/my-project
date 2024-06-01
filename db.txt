@@ -1,0 +1,114 @@
+--
+-- Database: dbstudents
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table course
+--
+
+CREATE TABLE course (
+  id_course int(11) NOT NULL,
+  name_course varchar(150) NOT NULL,
+  professor_name varchar(150) NOT NULL,
+  students text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table course
+--
+
+INSERT INTO course (id_course, name_course, professor_name, students) VALUES
+(9101, 'java', 'Dr.omar', 'ahmad\r\n'),
+(9102, 'html', 'Dr.anas', 'ahmad');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table professor
+--
+
+CREATE TABLE professor (
+  id_prof int(11) NOT NULL,
+  prof_name varchar(150) NOT NULL,
+  department text NOT NULL,
+  course_teach text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table professor
+--
+
+INSERT INTO professor (id_prof, prof_name, department, course_teach) VALUES
+(2345, 'Dr.omar', 'CS', 'java'),
+(2346, 'Dr.anas', 'CIS', 'html');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table student
+--
+
+CREATE TABLE student (
+  id int(11) NOT NULL,
+  name varchar(150) NOT NULL,
+  major text NOT NULL,
+  collage text NOT NULL,
+  course text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table student
+--
+
+INSERT INTO student (id, name, major, collage, course) VALUES
+(1, 'ahmad', 'CS', 'IT', 'java , html');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table student_profile
+--
+
+CREATE TABLE student_profile (
+  id int(11) NOT NULL,
+  name varchar(150) NOT NULL,
+  email text NOT NULL,
+  password text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table student_profile
+--
+
+INSERT INTO student_profile (id, name, email, password) VALUES
+(1, 'ahmad', 'ahmad@gmail.com', '12345');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table course
+--
+ALTER TABLE course
+  ADD PRIMARY KEY (id_course);
+
+--
+-- Indexes for table professor
+--
+ALTER TABLE professor
+  ADD PRIMARY KEY (id_prof);
+
+--
+-- Indexes for table student
+--
+ALTER TABLE student
+  ADD PRIMARY KEY (id);
+
+--
+-- Indexes for table student_profile
+--
+ALTER TABLE student_profile
+  ADD PRIMARY KEY (id);
