@@ -23,10 +23,11 @@
         def change_pass(self , new_pass):
             self.password = new_pass
  ```
-The **__init__** method, also known as the constructor, is a special method in Python classes. It is automatically called when a new instance of the class is created.
-The **get_info** method used to get information by student
-The **get_password** method to get  a password of student
-The **change_pass** method to change a password students
+* The **__init__** method, also known as the constructor, is a special method in Python classes. It is automatically called when a new instance of the class is created.
+* The **get_info** method used to get information by student
+* The **get_password** method to get  a password of student
+* The **change_pass** method to change a password students
+
 
 * create class Student :
 ```python
@@ -58,11 +59,12 @@ The **change_pass** method to change a password students
 
 
  ```
-The **__init__** method, also known as the constructor, is a special method in Python classes. It is automatically called when a new instance of the class is created.
-The **add_course** method used to add course  student
-The **veiw_course** method to view added course   
-The **remove_course** method to remove a course 
-Tho **view_students** method to view student take a course 
+* The **__init__** method, also known as the constructor, is a special method in Python classes. It is automatically called when a new instance of the class is created.
+* The **add_course** method used to add course  student
+* The **veiw_course** method to view added course   
+* The **remove_course** method to remove a course 
+* Tho **view_students** method to view student take a course 
+
 
 * create class Course :
 
@@ -95,11 +97,12 @@ Tho **view_students** method to view student take a course
 
  ```
 
-The **__init__** method, also known as the constructor, is a special method in Python classes. It is automatically called when a new instance of the class is created.
-The **add_student** method used to add students
-The **veiws_student** method to print name student if student take a course     
-The **remove_course** method to remove a student take a course  
-Tho **get_course_info** method to print information course 
+* The **__init__** method, also known as the constructor, is a special method in Python classes. It is automatically called when a new instance of the class is created.
+* The **add_student** method used to add students
+* The **veiws_student** method to print name student if student take a course     
+* The **remove_course** method to remove a student take a course  
+* Tho **get_course_info** method to print information course 
+
 
 * create class Profissor :
 
@@ -126,11 +129,11 @@ Tho **get_course_info** method to print information course
        
  ```
 
-The **__init__** method, also known as the constructor, is a special method in Python classes. It is automatically called when a new instance of the class is created.
-The **add_course_teach** method used to add course 
-The **veiw_course_teach** method to view a course teach   
-The **remove_course_teach** method to remove a course teach 
-Tho **get_prof_info** method to get information teacher
+* The **__init__** method, also known as the constructor, is a special method in Python classes. It is automatically called when a new instance of the class is created.
+* The **add_course_teach** method used to add course 
+* The **veiw_course_teach** method to view a course teach   
+* The **remove_course_teach** method to remove a course teach 
+* Tho **get_prof_info** method to get information teacher
 
 
 
