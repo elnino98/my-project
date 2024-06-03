@@ -181,11 +181,10 @@
 ```
 * Output:
 
-
-    1 ahmad cs it
-    2 omar cis it 
-    3 ammar pi it
-    4 ali mis it
+      1 ahmad cs it
+      2 omar cis it 
+      3 ammar pi it
+      4 ali mis it
 
 * to add course to c1 & c2  write code :
 
