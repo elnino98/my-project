@@ -19,8 +19,6 @@ class Student_profile:
         self.password = new_pass
 
 
-
-
 class Student:
     def __init__(self,id, name, Major,collage):
         self.id = id
