@@ -1,22 +1,22 @@
-class Student_profile:
-    def __init__(self,id,name,email,password):
-        self.id = id
-        self.name = name
-        self.email = email
-        self.password = password
+ class Student_profile:
+     def __init__(self,id,name,email,password):
+         self.id = id
+         self.name = name
+         self.email = email
+         self.password = password
 
 
     # to get information of student
-    def get_info(self):
-        return self.id , self.name , self.email
+     def get_info(self):
+         return self.id , self.name , self.email
 
     # to get password
-    def get_password(self):
-        return self.password
+     def get_password(self):
+         return self.password
 
     # to change password
-    def change_pass(self , new_pass):
-        self.password = new_pass
+     def change_pass(self , new_pass):
+         self.password = new_pass
 
 
 class Student:
@@ -158,6 +158,7 @@ if __name__ == "__main__":
 # add professor to teach course
     b3 = Course(9102, 'python', prof1.prof_name)
     print(b3.get_course_info())
+
 
 
 
