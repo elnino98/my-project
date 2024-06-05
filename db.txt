@@ -1,7 +1,7 @@
 --
 -- Database: dbstudents
 --
---add --
+
 -- --------------------------------------------------------
 
 --
@@ -75,15 +75,34 @@ CREATE TABLE student_profile (
   id int(11) NOT NULL,
   name varchar(150) NOT NULL,
   email text NOT NULL,
-  password text NOT NULL
+  password text NOT NULL,
+  re-enter password text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table student_profile
 --
 
-INSERT INTO student_profile (id, name, email, password) VALUES
-(1, 'ahmad', 'ahmad@gmail.com', '12345');
+INSERT INTO student_profile (id, name, email, password, re-enter password) VALUES
+(1, 'ahmad', 'ahmad@gmail.com', '12345', '12345');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table useraccount
+--
+
+CREATE TABLE useraccount (
+  id int(11) NOT NULL,
+  users varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table useraccount
+--
+
+INSERT INTO useraccount (id, users) VALUES
+(1, 'ahmad');
 
 --
 -- Indexes for dumped tables
@@ -111,4 +130,10 @@ ALTER TABLE student
 -- Indexes for table student_profile
 --
 ALTER TABLE student_profile
+  ADD PRIMARY KEY (id);
+
+--
+-- Indexes for table useraccount
+--
+ALTER TABLE useraccount
   ADD PRIMARY KEY (id);
