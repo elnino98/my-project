@@ -398,7 +398,7 @@ if __name__ == "__main__":
 
 
                 elif choice == 3:
-                    print('Exit')
+                    print('Exit...')
                     break
                 else:
                     print("Invalid choice. Please try again.")
