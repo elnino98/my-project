@@ -398,7 +398,11 @@ if __name__ == "__main__":
 
 
                 elif choice == 3:
+<<<<<<< HEAD
                     print('Exit....')
+=======
+                    print('Exit...')
+>>>>>>> f898c1b1f1112f9d00e304adad6e7931b75027cc
                     break
                 else:
                     print("Invalid choice. Please try again.")
@@ -417,7 +421,11 @@ if __name__ == "__main__":
 
 
         elif choice == 3:
+<<<<<<< HEAD
             print("Exiting program...")
+=======
+            print("Exiting program....")
+>>>>>>> f898c1b1f1112f9d00e304adad6e7931b75027cc
             break
 
         else:
