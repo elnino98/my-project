@@ -141,9 +141,10 @@ class Student:
     # to view added course
     def view_courses(self):
         if not self.courses:
-            print("No courses added.")
-        for course in self.courses:
-            print(course.get_course_info())
+          print("No courses added.")
+        else:  
+            for course in self.courses:
+                print(course.get_course_info())
 
     # to remove course
     def remove_course(self, course_id):
@@ -165,32 +166,25 @@ class Student:
 
 ```python
 class Course:
-    def __init__(self, id_course, name_course, professor_name):
+    def __init__(self, id_course, name_course, professor):
         self.id_course = id_course
         self.name_course = name_course
-        self.professor_name = professor_name
+        self.professor_name = professor.prof_name
         self.students = []
 
-    # to add student
-    def add_student(self,students):
-        self.students.append(students)
-        print(f"Student {students.id} added to course {self.id_course}.")
-        #print(students)
-       
-    # to view student
-    def veiws_students(self):
-        for x in self.students:
-            print(x)
+    def add_student(self, student):
+        self.students.append(student)
+        #print(f"Student {student.id} added to course {self.id_course}.")
 
-       # to remove student 
-    def remove_student(self,students):
-        for s in self.students:
-            self.students.remove(students)
+    def view_students(self):
+        if not self.students:
+            print("No students enrolled.")
+        else:
+            for student in self.students:
+                print(student.get_student_info())
 
-       # to get data course
     def get_course_info(self):
-        return self.id_course , self.name_course,self.professor_name
-
+        return self.id_course, self.name_course, self.professor_name
  ```
 
 * The **__init__** method, also known as the constructor, is a special method in Python classes. It is automatically called when a new instance of the class is created.
@@ -268,28 +262,61 @@ class Professor:
 if __name__ == "__main__":
     account_manager = UserAccount()
 
-
-
     student_profiles = [
-            StudentProfile(11, 'ahmad', 'ahmad@gmail.com', '123', '123'),
-            StudentProfile(12, 'hasan', 'hasan@gmail.com', '1234', '1234'),
-            StudentProfile(13, 'ali', 'ali@gmail.com', '1212', '1212'),
-            StudentProfile(14, 'mohahmad', 'mohahmad@gmail.com', '1233', '1233')
+        StudentProfile(11, 'ahmad', 'ahmad@gmail.com', '123', '123'),
+        StudentProfile(12, 'hasan', 'hasan@gmail.com', '1234', '1234'),
+        StudentProfile(13, 'ali', 'ali@gmail.com', '1212', '1212'),
+        StudentProfile(14, 'mohammad', 'mohammad@gmail.com', '1233', '1233')
     ]
 
     for student_profile in student_profiles:
         account_manager.sign_up(student_profile)
 
-
-
     professor_profiles = [
         ProfessorProfile(21, 'dr_ahmad', 'dr_ahmad@gmail.com', '4321', '4321'),
         ProfessorProfile(22, 'dr_hasan', 'dr_hasan@gmail.com', '4322', '4322'),
-        ProfessorProfile(23, 'dr_gfd', 'dr_gfd@gmail.com', '4333', '4333')
+        ProfessorProfile(23, 'dr_anas', 'dr_anas@gmail.com', '4333', '4333')
     ]
+
+    professors = [
+        Professor(21, 'Dr. Ahmad', 'Computer Science'),
+        Professor(22, 'Dr. Hasan', 'Software Engineering'),
+        Professor(23, 'Dr. Anas', 'Information Technology')
+    ]
+
+    courses = [
+        Course(1911, 'C++', professors[0]),
+        Course(1910, 'Java', professors[1]),
+        Course(1912, 'HTML', professors[1]),
+        Course(1913, 'Python', professors[2])
+    ]
+
     for prof_profile in professor_profiles:
         account_manager.sign_up_prof(prof_profile)
 
+    for course in courses:
+        professor = next((prof for prof in professors if prof.prof_name == course.professor_name), None)
+        if professor:
+            professor.add_course_teach(course)
+
+    students = [
+        Student(11, 'ahmad', 'IT', 'CS'),
+        Student(12, 'hasan', 'IT', 'CS'),
+        Student(13, 'ali', 'IT', 'CS'),
+        Student(14, 'mohammad', 'IT', 'CS')
+    ]
+
+    java_course = next((course for course in courses if course.name_course == "Java"), None)
+    if java_course:
+        for student in students:
+            java_course.add_student(student)
+            student.add_course(java_course)
+
+    html_course = next((course for course in courses if course.name_course == "HTML"), None)
+    if html_course:
+        for student in students:
+            html_course.add_student(student)
+            student.add_course(html_course)
 
     while True:
         print("1. Login")
@@ -309,172 +336,129 @@ if __name__ == "__main__":
                 if choice == 1:
                     email = input("Enter your email for login: ")
                     password = input("Enter your password for login: ")
-                    #user_logged_in = account_manager.login(email, password)
                     user_id, user_name = account_manager.login(email, password)
 
                     if user_id:
                         profile = next((profile for profile in student_profiles if profile.id == user_id), None)
+                        student = next((stu for stu in students if stu.id == user_id), None)
                         while True:
-                           print('1. Go to profile')
-                           print('2. Go to home')
-                           print('3. Exit')
-                           num = int(input('Enter your choice : '))
+                            print('1. Go to profile')
+                            print('2. Go to home')
+                            print('3. Exit')
+                            num = int(input('Enter your choice : '))
 
-                           if num == 1:
+                            if num == 1:
+                                while True:
+                                    print('1. Get information')
+                                    print('2. Get password')
+                                    print('3. Change password ')
+                                    print('4. Exit')
 
-                               while True:
+                                    num = int(input('Enter your choice : '))
 
-                                   print('1. Get information')
-                                   print('2. Get password')
-                                   print('3. Change password ')
-                                   print('4. Exit')
+                                    if num == 1:
+                                        print(profile.get_info())
+                                    elif num == 2:
+                                        print(profile.get_password())
+                                    elif num == 3:
+                                        new_password = input("Enter your new password: ")
+                                        repeat_new_password = input("Repeat your new password: ")
+                                        profile.change_pass(new_password, repeat_new_password)
+                                        print(profile.get_password())
+                                    elif num == 4:
+                                        break
 
-                                   num = int(input('Enter your choice : '))
+                            elif num == 2:
+                                while True:
+                                    print('1. get student data')
+                                    print('2. View courses')
+                                    print('3. Add course')
+                                    print('4. Remove course')
+                                    print('5. Exit')
+                                    choice = int(input('Enter your choice: '))
 
-                                   if num == 1:
-                                       print(profile.get_info())
+                                    if choice == 1:
+                                        #student = Student(id, name, major, college)
+                                        print(student.get_student_info())
+                                    elif choice == 2:
+                                        student.view_courses()
+                                    elif choice == 3:
 
-                                   elif num == 2:
-                                       print(profile.get_password())
+                                        for course in courses:
+                                            print(course.get_course_info())
 
-                                   elif num == 3:
-                                       new_password = input("Enter your new password: ")
-                                       repeat_new_password = input("Repeat your new password: ")
-                                       profile.change_pass(new_password, repeat_new_password)
-                                       print(profile.get_password())
+                                        course_id = int(input("Enter the course ID to add: "))
+                                        selected_course = next(
+                                            (course for course in courses if course.id_course == course_id), None)
+                                        if selected_course:
+                                            student.add_course(selected_course)
 
-                                   elif num == 4:
-                                       print("Exiting...")
-                                       break
-                                   else:
-                                       print("Invalid choice. Please try again.")
+                                    elif choice == 4:
+                                        course_id = int(input("Enter the course ID to remove: "))
+                                        student.remove_course(course_id)
+                                    elif choice == 5:
+                                         print('Error')
+                                         break
+                            elif num == 3:
+                                print('exit')
+                                break
 
-                           elif num == 2:
-
-                               while True:
-
-                                  print('1. Edit data')
-                                  print('2. Add course')
-                                  print('3. View courses')
-                                  print('4. Remove course')
-                                  print('5. Exit')
-                                  course_choice = int(input('Enter your choice: '))
-
-                                  if course_choice == 1:
-                                      print('Profile Id :' + str(profile.id))
-                                      print('Profile Name :' + profile.name)
-                                      print('Profile Email :' + profile.email)
-                                      collage = input("Enter your collage: ")
-                                      major = input("Enter your major: ")
-
-                                      student = Student(profile.id, profile.name, major, collage)
-                                      print(student.get_student_info())
-
-                                       #print('Student Id :' + student_profile.id)
-                                       #print('Student Name :' + student_profile.name)
-                                       #print('Students Email :' + student_profile.email)
-                                       #collage = input("Enter your collage: ")
-                                       #major = input("Enter your major: ")
-
-                                       #student = Student(student_profile.id, student_profile.name, major, collage)
-                                       #print(student.get_student_info())
-
-                                  elif course_choice == 2:
-
-                                      courses = [
-                                         Course(1911, 'C++', 'Dr. Ahmad'),
-                                         Course(1910, 'Java', 'Dr. Ali'),
-                                         Course(1912, 'HTML', 'Dr. Ali'),
-                                         Course(1913, 'Python', 'Dr. Anas')
-                                                       ]
-                                      print("Available Courses:")
-                                      for course in courses:
-
-                                          print(course.get_course_info())
-
-                                      course_id = int(input("Enter the course ID to add: "))
-
-                                # Find the course by ID and add to student
-                                      selected_course = next((course for course in courses if course.id_course == course_id), None)
-                                      if selected_course:
-                                          student.add_course(selected_course)
-                                      else:
-
-                                          print("Course not found.")
-                                  elif course_choice == 3:
-                                       student.view_courses()
-                                  elif course_choice == 4:
-                                      course_id = int(input("Enter the course ID to remove: "))
-                                      student.remove_course(course_id)
-
-                                  elif course_choice == 5:
-                                      print("Exiting to main menu...")
-                                      break
-                                  else:
-                                      print("Invalid choice. Please try again.")
-
-                           elif num == 3:
-
-                               print('Exit...')
-                               break
-                           else:
-                               print("Invalid choice. Please try again.")
                 elif choice == 2:
                     email = input("Enter your email for login: ")
                     password = input("Enter your password for login: ")
-                    # user_logged_in = account_manager.login(email, password)
                     user_id, user_name = account_manager.login_prof(email, password)
+
                     if user_id:
-                        profile = next((profile for profile in professor_profiles if profile.id == user_id), None)
+                        professor = next((prof for prof in professors if prof.id_prof == user_id), None)
                         while True:
-                           print('1. Go to profile')
-                           print('2. Go to home')
-                           print('3. Exit')
-                           num = int(input('Enter your choice : '))
+                            print('1. Go to profile')
+                            print('2. Go to home')
+                            print('3. Exit')
+                            num = int(input('Enter your choice : '))
 
-                           if num == 1:
+                            if num == 1:
+                                while True:
+                                    print('1. Get information')
+                                    print('2. Get password')
+                                    print('3. Change password ')
+                                    print('4. Exit')
 
-                               while True:
+                                    num = int(input('Enter your choice : '))
 
-                                   print('1. Get information')
-                                   print('2. Get password')
-                                   print('3. Change password ')
-                                   print('4. Exit')
+                                    if num == 1:
+                                        print(professor.get_prof_info())
+                                    elif num == 2:
+                                        print(professor_profiles[professors.index(professor)].get_password())
+                                    elif num == 3:
+                                        new_password = input("Enter your new password: ")
+                                        repeat_new_password = input("Repeat your new password: ")
+                                        professor_profiles[professors.index(professor)].change_pass(new_password, repeat_new_password)
+                                        print(professor_profiles[professors.index(professor)].get_password())
+                                    elif num == 4:
+                                        break
 
-                                   num = int(input('Enter your choice : '))
-
-                                   if num == 1:
-                                       print(profile.get_info())
-
-                                   elif num == 2:
-                                       print(profile.get_password())
-
-                                   elif num == 3:
-                                       new_password = input("Enter your new password: ")
-                                       repeat_new_password = input("Repeat your new password: ")
-                                       profile.change_pass(new_password, repeat_new_password)
-                                       print(profile.get_password())
-
-                                   elif num == 4:
-                                       print("Exiting...")
-                                       break
-                                   else:
-                                       print("Invalid choice. Please try again.")
-                           elif num == 2 :
-                               print('this page by edit now')
-                           elif num == 3:
-                               print('Exit')
-                               break
-                           else:print("Invalid choice. Please try again.")
-
-
-                elif choice == 3:
-                    print('Exit....')
-                    break
-                else:
-                    print("Invalid choice. Please try again.")
-
-
+                            elif num == 2:
+                                while True:
+                                    print('1. show information')
+                                    print('2. View courses')
+                                    print('3. View students')
+                                    print('4. Exit')
+                                    choice = int(input('Enter your choice: '))
+                                    if choice == 1:
+                                        professor.get_prof_info()
+                                    elif choice == 2:
+                                        professor.view_courses_teach()
+                                    elif choice == 3:
+                                        professor.view_students_taught()
+                                    elif choice == 4:
+                                        print('Exit')
+                                        break
+                            elif num == 3:
+                                print('Exit')
+                                break
+                if choice == 3:
+                  print('Exit...')
+                  break  
         elif choice == 2:
             id = input("Enter your ID: ")
             name = input("Enter your name: ")
@@ -482,30 +466,33 @@ if __name__ == "__main__":
             password = input("Enter your password: ")
             repeat_password = input("Repeat your password: ")
 
+
             new_profile = StudentProfile(id, name, email, password, repeat_password)
             account_manager.sign_up(new_profile)
             student_profiles.append(new_profile)
+            print(f'Profile Id: {id}')
+            print(f'Profile Name: {name}')
+            print(f'Profile Email: {email}')
+            college = input("Enter your college: ")
+            major = input("Enter your major: ")
+
+            student = Student(id, name, major, college)
+            print(student.get_student_info())
 
 
         elif choice == 3:
             print("Exiting program...")
             break
-
         else:
             print("Invalid choice. Please try again.")
+
+
 
 
 ```
 
 * The result after run a program :
 
-      Account created successfully.
-      Account created successfully.
-      Account created successfully.
-      Account created successfully.
-      Account created successfully.
-      Account created successfully.
-      Account created successfully.
       1. Login
       2. Sign Up
       3. Exit
@@ -538,11 +525,46 @@ if __name__ == "__main__":
       3. Change password 
       4. Exit
       Enter your choice : 
-if choice 2 then go to home :
+* if choice 2 then go to home :
           
-     1. Edit data
-     2. Add course
-     3. View courses
-     4. Remove course
-     5. Exit
+      1. Edit data 
+      2. Add course
+      3. View courses
+      4. Remove course
+      5. Exit
 
+* if choice 2 then :
+
+      Enter your choice: 1
+      1. Login students
+      2. Login professor
+      3. Exit
+      Enter your choice:   
+
+* if choice 2 then :
+
+      Enter your email for login: 
+      Enter your password for login:
+
+* if enter email and password correct then :
+
+      1. Go to profile
+      2. Go to home
+      3. Exit
+      Enter your choice : 
+
+* if choice 1 then go to profile :
+
+      1. Get information
+      2. Get password
+      3. Change password 
+      4. Exit
+      Enter your choice : 
+* 
+* if choice 2 then go to home :
+
+
+     1. show information
+     2. View courses
+     3. View students
+     4. Exit
