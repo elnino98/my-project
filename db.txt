@@ -47,6 +47,27 @@ INSERT INTO professor (id_prof, prof_name, department, course_teach) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table professor_profile
+--
+
+CREATE TABLE professor_profile (
+  id int(11) NOT NULL,
+  name varchar(150) NOT NULL,
+  email text NOT NULL,
+  password text NOT NULL,
+  re-enter password text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table professor_profile
+--
+
+INSERT INTO professor_profile (id, name, email, password, re-enter password) VALUES
+(21, 'Dr_ahmad', 'Dr_ahmad@gmail.com', '4321', '4321');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table student
 --
 
@@ -137,3 +158,7 @@ ALTER TABLE student_profile
 --
 ALTER TABLE useraccount
   ADD PRIMARY KEY (id);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
