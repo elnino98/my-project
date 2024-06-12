@@ -17,7 +17,7 @@ CREATE TABLE course (
 
 --
 -- Dumping data for table course
---
+---
 
 INSERT INTO course (id_course, name_course, professor_name, students) VALUES
 (9101, 'java', 'Dr.omar', 'ahmad\r\n'),
