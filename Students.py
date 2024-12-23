@@ -347,7 +347,7 @@ if __name__ == "__main__":
                                     print('4. Exit')
                                     choice = int(input('Enter your choice: '))
                                     if choice == 1:
-                                        professor.get_prof_info()
+                                        print(professor.get_prof_info())
                                     elif choice == 2:
                                         professor.view_courses_teach()
                                     elif choice == 3:
