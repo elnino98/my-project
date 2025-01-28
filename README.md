@@ -1,4 +1,4 @@
-# flex-ops-training
+# my first project
 
 * create class userAccount
 
